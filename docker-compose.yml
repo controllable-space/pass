@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  app:
+    build:
+      dockerfile: docker/app/Dockerfile
+      context: .
+      args:
+        - UID=$UID
+        - GID=$GID
+    init: true
+    volumes:
+      - .:/home/vscode/workspace
