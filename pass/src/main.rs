@@ -3,7 +3,7 @@ use anyhow::Context;
 use diesel::prelude::*;
 use diesel_async::{RunQueryDsl, AsyncConnection, AsyncPgConnection};
 use controllable_pass::schema::passwords;
-use controllable_pass::models::Password;
+use controllable_pass::models::{Password, NewPassword};
 use controllable_pass::create_password;
 
 #[tokio::main]
@@ -21,7 +21,7 @@ async fn main() -> anyhow::Result<()> {
         .with_context(|| format!("Failed to query for passwords"))?;
 
     if passwords.len() == 0 {
-        create_password(&mut conn, "example", "example").await?;
+        create_password(&mut conn, NewPassword { name: "example", value: "example" }).await?;
     }
 
     dbg!(passwords);
