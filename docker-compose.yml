@@ -8,6 +8,11 @@ services:
       args:
         - UID=$UID
         - GID=$GID
+    env_file: docker/app/.env
     init: true
     volumes:
       - .:/home/vscode/workspace
+
+  db:
+    build: docker/db
+    env_file: docker/db/.env

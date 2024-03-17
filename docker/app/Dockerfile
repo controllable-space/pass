@@ -5,7 +5,9 @@ RUN apt-get update && \
         curl \
         git \
         build-essential \
-        pkg-config
+        pkg-config \
+        libpq-dev \
+        postgresql-client
 
 ARG UID
 ARG GID
@@ -15,6 +17,7 @@ USER vscode
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain=stable -c rust-src -y
 ENV PATH=$PATH:/home/vscode/.cargo/bin
+RUN cargo install diesel_cli --no-default-features --features postgres
 
 WORKDIR /home/vscode/workspace
 CMD ["sleep", "infinity"]
