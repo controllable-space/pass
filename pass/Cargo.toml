@@ -7,3 +7,5 @@ edition = "2021"
 tokio = { version = "1", features = ["full"] }
 diesel = { version = "2.1.0"}
 diesel-async = { version = "0.3.1", features = ["postgres"] }
+anyhow = "1.0"
+thiserror = "1.0"
