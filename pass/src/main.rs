@@ -4,7 +4,7 @@ use diesel::prelude::*;
 use diesel_async::{RunQueryDsl, AsyncConnection, AsyncPgConnection};
 use controllable_pass::schema::passwords;
 use controllable_pass::models::{Password, NewPassword};
-use controllable_pass::create_password;
+use controllable_pass::repositories::password::create_password;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
